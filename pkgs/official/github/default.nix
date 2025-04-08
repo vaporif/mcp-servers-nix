@@ -30,6 +30,7 @@ buildGoModule rec {
   meta = {
     description = "GitHub's official MCP Server";
     homepage = "https://github.com/github/github-mcp-server";
+    changelog = "https://github.com/github/github-mcp-server/releases/tag/v${version}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ natsukium ];
     mainProgram = "github-mcp-server";
