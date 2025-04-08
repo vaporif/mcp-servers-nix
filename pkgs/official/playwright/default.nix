@@ -24,6 +24,7 @@ buildNpmPackage rec {
   meta = {
     description = "Playwright MCP server";
     homepage = "https://github.com/microsoft/playwright-mcp";
+    changelog = "https://github.com/microsoft/playwright-mcp/releases/tag/v${version}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ natsukium ];
     mainProgram = "mcp-server-playwright";
