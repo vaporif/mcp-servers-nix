@@ -5,6 +5,7 @@
   python3Packages,
   build-system ? [ python3Packages.hatchling ],
   dependencies ? [ ],
+  pythonRelaxDeps ? [ ],
   doCheck ? true,
   nativeCheckInputs ? [ python3Packages.pytestCheckHook ],
 }:
@@ -13,13 +14,15 @@ python3Packages.buildPythonApplication rec {
   inherit (import ./source.nix { inherit fetchFromGitHub; }) version src;
   pyproject = true;
   sourceRoot = "${src.name}/src/${service}";
-  inherit build-system;
-  inherit dependencies;
+  inherit
+    build-system
+    dependencies
+    pythonRelaxDeps
+    doCheck
+    nativeCheckInputs
+    ;
 
   pythonImportsCheck = [ "mcp_server_${service}" ];
-
-  inherit doCheck;
-  inherit nativeCheckInputs;
 
   meta = {
     description = "Model Context Protocol Servers for ${service}";
