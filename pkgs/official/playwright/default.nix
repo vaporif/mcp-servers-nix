@@ -6,13 +6,13 @@
 
 buildNpmPackage rec {
   pname = "playwright-mcp";
-  version = "0.0.9";
+  version = "0.0.10";
 
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = "playwright-mcp";
     tag = "v${version}";
-    hash = "sha256-I5uu1B7ei3D4PPby0i60EZ4I0BXKL+FyKVNHSEQlENU=";
+    hash = "sha256-e7zc4HC+V5W7k1khSbyggQGdcUg9pI1+p5n7Ozu0/m0=";
   };
 
   postPatch = ''
