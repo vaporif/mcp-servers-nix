@@ -15,17 +15,15 @@ let
       cfg = config.programs.${name};
     in
     {
+      imports = [
+        (lib.mkRemovedOptionModule [ "programs" name "wrapPackageWithEnvFile" ] ''
+          The option 'wrapPackageWithEnvFile' has been removed as it is no longer needed.
+        '')
+      ];
+
       options.programs.${name} = {
         enable = lib.mkEnableOption name;
         package = lib.mkPackageOption servers packageName { };
-        wrapPackageWithEnvFile = lib.mkOption {
-          type = lib.types.bool;
-          default = (config.flavor != "vscode");
-          description = ''
-            Whether to wrap the package with an environment file.
-            When flavor is set to 'vscode', the environment file is passed directly as a parameter instead of wrapping by default.
-          '';
-        };
         type = lib.mkOption {
           type = lib.types.nullOr (
             lib.types.enum [
@@ -79,19 +77,39 @@ let
           default = null;
           description = ''
             Path to an .env from which to load additional environment variables.
+            When flavor is set to 'vscode', the environment file is passed directly as a parameter instead of wrapping by default.
           '';
+        };
+        passwordCommand = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = ''
+            Command to execute to retrieve secrets.
+            The output of the command should be in the format "KEY=VALUE" which will be exported as environment variables.
+            This is useful for integrating with password managers or similar tools.
+            passwordCommand is always handled via the wrapper regardless of flavor.
+          '';
+          example = "pass mcp-server";
         };
       };
 
       config.settings.servers =
         let
+          exportEnvFile = (cfg.envFile != null) && (config.flavor != "vscode");
+          exportPasswordCommand = cfg.passwordCommand != null;
+          doWrap = exportEnvFile || exportPasswordCommand;
+          mkExportCommand = source: ''
+            export $(${source} | ${lib.getExe pkgs.gnugrep} -v '^#' | ${lib.getExe' pkgs.findutils "xargs"} -d '\n')
+          '';
           wrapped-package = pkgs.writeScriptBin packageName ''
             #!${pkgs.runtimeShell}
-            export $(${pkgs.lib.getExe' pkgs.coreutils "cat"} ${lib.escapeShellArg cfg.envFile} | ${pkgs.lib.getExe pkgs.gnugrep} -v '^#' | ${pkgs.lib.getExe' pkgs.findutils "xargs"} -d '\n')
-            ${pkgs.lib.getExe cfg.package} "$@"
+            ${lib.optionalString exportEnvFile (
+              mkExportCommand ((lib.getExe' pkgs.coreutils "cat") (lib.escapeShellArg cfg.envFile))
+            )}
+            ${lib.optionalString exportPasswordCommand (mkExportCommand cfg.passwordCommand)}
+            ${lib.getExe cfg.package} "$@"
           '';
-          package =
-            if (cfg.wrapPackageWithEnvFile && cfg.envFile != null) then wrapped-package else cfg.package;
+          package = if doWrap then wrapped-package else cfg.package;
         in
         lib.mkIf cfg.enable {
           ${name} = lib.filterAttrs (k: v: v != null) (
