@@ -11,7 +11,7 @@ This repository provides a Nix framework for configuring and deploying MCP serve
 - **Modular Configuration**: Define and combine multiple MCP server configurations
 - **Reproducible Builds**: Leverage Nix for reproducible and declarative server setups
 - **Pre-configured Modules**: Ready-to-use configurations for popular MCP server types
-- **Security-focused**: Better handling credentials and sensitive information, with pinned server versions
+- **Security-focused**: Better handling credentials and sensitive information through `envFile` and `passwordCommand`, with pinned server versions
 
 ## Available Modules
 
@@ -189,16 +189,18 @@ Each module provides specific configuration options, but there are some common o
 Each enabled module (using `programs.<module>.enable = true;`) provides the following options:
 
 - `package`: The package to use for this module
-- `wrapPackageWithEnvFile`: Whether to wrap the package with an environment file (default: `true` when flavor is not "vscode")
 - `type`: Server connection type (`sse` or `stdio`, default: `null`)
 - `args`: Array of arguments passed to the command (default: `[]`)
 - `env`: Environment variables for the server (default: `{}`)
 - `url`: URL of the server for "sse" connections (default: `null`)
 - `envFile`: Path to an .env file from which to load additional environment variables (default: `null`)
+- `passwordCommand`: Command to execute to retrieve secrets in the format "KEY=VALUE" which will be exported as environment variables, useful for integrating with password managers (default: `null`)
 
 ### Security Note
 
-For security reasons, do not hardcode authentication credentials in the `env` attribute. All files in `/nix/store` can be read by anyone with access to the store. Always use `envFile` instead.
+For security reasons, do not hardcode authentication credentials in the `env` attribute. All files in `/nix/store` can be read by anyone with access to the store. Always use `envFile` or `passwordCommand` instead.
+
+The system automatically wraps the package when either `envFile` or `passwordCommand` is set, which allows secure retrieval of credentials without exposing them in the Nix store.
 
 ### Adding Custom Servers
 
