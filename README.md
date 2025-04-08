@@ -1,10 +1,10 @@
 # mcp-servers-nix
 
-A Nix-based configuration framework for Model Control Protocol (MCP) servers.
+A Nix-based configuration framework for Model Control Protocol (MCP) servers with ready-to-use packages.
 
 ## Overview
 
-This repository provides a Nix framework for configuring and deploying MCP servers. It offers a modular approach to configuring various MCP servers with a consistent interface.
+This repository provides both MCP server packages and a Nix framework for configuring and deploying MCP servers. It offers a modular approach to configuring various MCP servers with a consistent interface.
 
 ## Features
 
@@ -13,35 +13,58 @@ This repository provides a Nix framework for configuring and deploying MCP serve
 - **Pre-configured Modules**: Ready-to-use configurations for popular MCP server types
 - **Security-focused**: Better handling credentials and sensitive information through `envFile` and `passwordCommand`, with pinned server versions
 
-## Available Modules
-
-The framework includes modules for the following MCP servers:
-
-- [aws-kb-retrieval](./modules/aws-kb-retrieval.nix)
-- [brave-search](./modules/brave-search.nix)
-- [everart](./modules/everart.nix)
-- [everything](./modules/everything.nix)
-- [fetch](./modules/fetch.nix)
-- [filesystem](./modules/filesystem.nix)
-- [gdrive](./modules/gdrive.nix)
-- [git](./modules/git.nix)
-- [github](./modules/github.nix)
-- [gitlab](./modules/gitlab.nix)
-- [google-maps](./modules/google-maps.nix)
-- [memory](./modules/memory.nix)
-- [playwright](./modules/playwright.nix)
-- [postgres](./modules/postgres.nix)
-- [puppeteer](./modules/puppeteer.nix)
-- [redis](./modules/redis.nix)
-- [sentry](./modules/sentry.nix)
-- [sequential-thinking](./modules/sequential-thinking.nix)
-- [slack](./modules/slack.nix)
-- [sqlite](./modules/sqlite.nix)
-- [time](./modules/time.nix)
-
 ## Getting Started
 
-### Basic Usage
+### Quick Usage Without Installation
+
+You can run MCP server packages directly without installing them:
+
+```bash
+# Using nix-shell
+nix-shell -p "(import (builtins.fetchTarball \"https://github.com/natsukium/mcp-servers-nix/archive/main.tar.gz\") {}).mcp-server-fetch" --run mcp-server-fetch
+
+# Using flakes
+nix run github:natsukium/mcp-servers-nix#mcp-server-fetch
+```
+
+### Installing Packages
+
+There are several ways to install and use the packages provided by this repository:
+
+#### Direct Package Installation
+
+You can install individual MCP server packages directly with:
+
+```bash
+# Without flakes
+nix-env -f https://github.com/natsukium/mcp-servers-nix/archive/main.tar.gz -iA mcp-server-fetch
+
+# Using flakes
+nix profile install github:natsukium/mcp-servers-nix#mcp-server-fetch
+```
+
+#### Using Overlays
+
+You can use the provided overlays to add all MCP server packages to your pkgs:
+
+```nix
+# In your configuration.nix or home.nix
+{
+  nixpkgs.overlays = [
+    # classic
+    (import (builtins.fetchTarball "https://github.com/natsukium/mcp-servers-nix/archive/main.tar.gz")).overlays.default
+    # or with flakes
+    # mcp-servers-nix.overlays.default 
+  ];
+
+  # Then you can install packages through `pkgs`
+  environment.systemPackages = with pkgs; [
+    mcp-server-fetch
+  ];
+}
+```
+
+### Module Usage
 
 #### Classic approach without flakes
 
@@ -126,7 +149,7 @@ mcp-servers.lib.mkConfig pkgs {
 nix-build config.nix
 ```
 
-### Using Flakes
+#### Using Flakes
 
 1. Create a configuration file:
 
@@ -173,6 +196,10 @@ Check the `examples` directory for complete configuration examples:
 - [`vscode.nix`](./examples/vscode.nix): VS Code integration setup
 - [`librechat.nix`](./examples/librechat.nix): Configuration for LibreChat integration
 
+### Real World Examples
+
+Check out [GitHub search results](https://github.com/search?q=lang%3Anix+mcp-servers-nix&type=code) for examples of how others are using mcp-servers-nix in their projects.
+
 ## Configuration Options
 
 Each module provides specific configuration options, but there are some common options available for all modules:
@@ -202,11 +229,37 @@ For security reasons, do not hardcode authentication credentials in the `env` at
 
 The system automatically wraps the package when either `envFile` or `passwordCommand` is set, which allows secure retrieval of credentials without exposing them in the Nix store.
 
-### Adding Custom Servers
+## Available Modules
+
+The framework includes modules for the following MCP servers:
+
+- [aws-kb-retrieval](./modules/aws-kb-retrieval.nix)
+- [brave-search](./modules/brave-search.nix)
+- [everart](./modules/everart.nix)
+- [everything](./modules/everything.nix)
+- [fetch](./modules/fetch.nix)
+- [filesystem](./modules/filesystem.nix)
+- [gdrive](./modules/gdrive.nix)
+- [git](./modules/git.nix)
+- [github](./modules/github.nix)
+- [gitlab](./modules/gitlab.nix)
+- [google-maps](./modules/google-maps.nix)
+- [memory](./modules/memory.nix)
+- [playwright](./modules/playwright.nix)
+- [postgres](./modules/postgres.nix)
+- [puppeteer](./modules/puppeteer.nix)
+- [redis](./modules/redis.nix)
+- [sentry](./modules/sentry.nix)
+- [sequential-thinking](./modules/sequential-thinking.nix)
+- [slack](./modules/slack.nix)
+- [sqlite](./modules/sqlite.nix)
+- [time](./modules/time.nix)
+
+## Adding Custom Servers
 
 You can add your own custom MCP servers by configuring them directly in the `settings.servers` section. This is useful for integrating MCP servers that are not included in this repository.
 
-#### Example: Adding Obsidian Integration
+### Example: Adding Obsidian Integration
 
 Here's an example of how to add the `mcp-obsidian` server to integrate with Obsidian:
 
@@ -251,7 +304,7 @@ You can extend mcp-servers-nix with new MCP servers by adding both package defin
 2. Reference implementations go in `pkgs/reference/`
 3. Community implementations go in `pkgs/community/`
 
-#### Example: Adding a New Official Server Package
+### Example: Adding a New Official Server Package
 
 Create a new package definition in `pkgs/official/new-mcp-server/default.nix`:
 
@@ -314,7 +367,7 @@ Create a new module in `modules/new-mcp-server.nix`:
 
 The [`mkServerModule` function](lib/default.nix) provides the framework for creating module configurations with consistent options. See its implementation for more details about available features.
 
-#### Adding Custom Module Options
+### Adding Custom Module Options
 
 In addition to the common options provided by `mkServerModule`, you can define custom options for your module. This allows you to expose server-specific configuration that can be set by users.
 
