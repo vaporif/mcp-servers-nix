@@ -104,7 +104,7 @@ let
           wrapped-package = pkgs.writeScriptBin packageName ''
             #!${pkgs.runtimeShell}
             ${lib.optionalString exportEnvFile (
-              mkExportCommand ((lib.getExe' pkgs.coreutils "cat") (lib.escapeShellArg cfg.envFile))
+              mkExportCommand ("${lib.getExe' pkgs.coreutils "cat"} ${lib.escapeShellArg cfg.envFile}")
             )}
             ${lib.optionalString exportPasswordCommand (mkExportCommand cfg.passwordCommand)}
             ${lib.getExe cfg.package} "$@"
