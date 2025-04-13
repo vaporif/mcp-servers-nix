@@ -8,6 +8,32 @@ let
   '';
 in
 {
+  test-wrapper-password-command-attrs =
+    let
+      passCmd = pkgs.writeScript "passcmd" ''
+        echo dummy-token
+      '';
+      evaluated-module = mcp-servers.lib.evalModule pkgs {
+        programs = {
+          github = {
+            enable = true;
+            package = printenv;
+            passwordCommand = {
+              TEST = [ "${passCmd}" ];
+            };
+          };
+        };
+      };
+    in
+    pkgs.runCommandNoCC "test-wrapper-password-command-attrs"
+      { nativeBuildInputs = with pkgs; [ gnugrep ]; }
+      ''
+        touch $out
+        # Verify that the environment variable is correctly exported when the command is run
+        ${evaluated-module.config.settings.servers.github.command} | grep -q TEST=dummy-token
+        # Verify that the sensitive token is NOT stored in the generated config file
+        ! grep -q dummy-token ${evaluated-module.config.configFile}
+      '';
   test-wrapper-password-command-str =
     let
       passCmd = pkgs.writeScript "passcmd" ''

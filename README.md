@@ -221,7 +221,7 @@ Each enabled module (using `programs.<module>.enable = true;`) provides the foll
 - `env`: Environment variables for the server (default: `{}`)
 - `url`: URL of the server for "sse" connections (default: `null`)
 - `envFile`: Path to an .env file from which to load additional environment variables (default: `null`)
-- `passwordCommand`: Command to execute to retrieve secrets in the format "KEY=VALUE" which will be exported as environment variables, useful for integrating with password managers (default: `null`)
+- `passwordCommand`: Command to execute to retrieve secrets. Can be specified as a string that outputs in the format "KEY=VALUE" which will be exported as environment variables, or as an attribute set where keys are environment variable names and values are command lists that output the value. Useful for integrating with password managers (default: `null`)
 
 ### Security Note
 
