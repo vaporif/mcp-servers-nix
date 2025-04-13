@@ -244,6 +244,7 @@ The framework includes modules for the following MCP servers:
 - [github](./modules/github.nix)
 - [gitlab](./modules/gitlab.nix)
 - [google-maps](./modules/google-maps.nix)
+- [grafana](./modules/grafana.nix)
 - [memory](./modules/memory.nix)
 - [notion](./modules/notion.nix)
 - [playwright](./modules/playwright.nix)
