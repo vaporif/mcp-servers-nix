@@ -419,6 +419,18 @@ in
 
 For more complex servers, you can examine the existing implementations in the `pkgs/` and `modules/` directories as reference.
 
+## Testing
+
+This repository includes automated tests to verify the functionality of the framework. You can run the tests using the following commands:
+
+```bash
+# without flakes
+nix-build tests
+
+# with flakes
+nix flake check
+```
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE file](./LICENSE) for details.
