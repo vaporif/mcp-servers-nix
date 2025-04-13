@@ -55,6 +55,7 @@
   mcp-server-time = pkgs.callPackage ./reference/time.nix { };
 
   # official servers
+  notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
   github-mcp-server = pkgs.callPackage ./official/github { };
 }
