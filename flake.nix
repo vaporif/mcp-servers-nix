@@ -21,14 +21,18 @@
 
       overlays.default = import ./overlays;
 
-      checks = lib.recursiveUpdate (forAllSystems (
-        system:
-        import ./examples {
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        }
-      )) self.packages;
+      checks = lib.foldr (x: acc: lib.recursiveUpdate x acc) { } [
+        (forAllSystems (system: import ./tests { pkgs = import nixpkgs { inherit system; }; }))
+        (forAllSystems (
+          system:
+          import ./examples {
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          }
+        ))
+        self.packages
+      ];
     };
 }

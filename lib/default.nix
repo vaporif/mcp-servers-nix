@@ -81,15 +81,29 @@ let
           '';
         };
         passwordCommand = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
+          type = with lib.types; nullOr (either str (attrsOf (listOf str)));
           default = null;
           description = ''
-            Command to execute to retrieve secrets.
-            The output of the command should be in the format "KEY=VALUE" which will be exported as environment variables.
+            Command to execute to retrieve secrets. Can be specified in two ways:
+
+            1. As a string: The command should output in the format "KEY=VALUE" which will be exported as environment variables.
+               Example: "pass mcp-server"
+
+            2. As an attribute set: Keys are environment variable names and values are command lists that output the value.
+               Example: { GITHUB_PERSONAL_ACCESS_TOKEN = [ "gh" "auth" "token" ]; }
+
             This is useful for integrating with password managers or similar tools.
             passwordCommand is always handled via the wrapper regardless of flavor.
           '';
-          example = "pass mcp-server";
+          example = lib.literalExpression ''
+            {
+              GITHUB_PERSONAL_ACCESS_TOKEN = [
+                "gh"
+                "auth"
+                "token"
+              ];
+            }
+          '';
         };
       };
 
@@ -106,7 +120,14 @@ let
             ${lib.optionalString exportEnvFile (
               mkExportCommand ("${lib.getExe' pkgs.coreutils "cat"} ${lib.escapeShellArg cfg.envFile}")
             )}
-            ${lib.optionalString exportPasswordCommand (mkExportCommand cfg.passwordCommand)}
+            ${lib.optionalString exportPasswordCommand (
+              if (lib.isString cfg.passwordCommand) then
+                mkExportCommand cfg.passwordCommand
+              else
+                lib.concatMapAttrsStringSep "\n" (
+                  name: value: "export ${name}=$(${toString value})"
+                ) cfg.passwordCommand
+            )}
             ${lib.getExe cfg.package} "$@"
           '';
           package = if doWrap then wrapped-package else cfg.package;
