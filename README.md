@@ -78,7 +78,10 @@ let
 in
 mcp-servers.lib.mkConfig pkgs {
   programs = {
-    filesystem.enable = true;
+    filesystem = {
+      enable = true;
+      args = [ "/path/to/allowed/directory" ];
+    };
     fetch.enable = true;
     # Add more modules as needed
   };
@@ -101,7 +104,7 @@ nix-build config.nix
       "env": {}
     },
     "filesystem": {
-      "args": [],
+      "args": [ "/path/to/allowed/directory" ],
       "command": "/nix/store/i0v4ynavmz3iilr27c7iqg4dc3xxnygb-mcp-server-filesystem-2025.3.28/bin/mcp-server-filesystem",
       "env": {}
     }
@@ -136,7 +139,10 @@ let
 in
 mcp-servers.lib.mkConfig pkgs {
   programs = {
-    filesystem.enable = true;
+    filesystem = {
+      enable = true;
+      args = [ "/path/to/allowed/directory" ];
+    };
     fetch.enable = true;
     # Add more modules as needed
   };
@@ -174,7 +180,10 @@ nix-build config.nix
         in
         mcp-servers-nix.lib.mkConfig pkgs {
           programs = {
-            filesystem.enable = true;
+            filesystem = {
+              enable = true;
+              args = [ "/path/to/allowed/directory" ];
+            };
             fetch.enable = true;
           };
         };
@@ -274,7 +283,7 @@ mcp-servers.lib.mkConfig pkgs {
   programs = {
     filesystem = {
       enable = true;
-      args = [ "/path/to/files" ];
+      args = [ "/path/to/allowed/directory" ];
     };
   };
   
