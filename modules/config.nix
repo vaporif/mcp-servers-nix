@@ -20,10 +20,14 @@
       type = lib.types.enum [
         "claude"
         "vscode"
+        "vscode-workspace"
       ];
       default = "claude";
       description = ''
         Configuration file type.
+        - "claude": Standard Claude Desktop configuration format using "mcpServers" key
+        - "vscode": VSCode global configuration format using "mcp.servers" keys
+        - "vscode-workspace": VSCode workspace configuration format with top-level "servers" key,
       '';
     };
     fileName = lib.mkOption {
@@ -56,6 +60,8 @@
             "mcp"
             "servers"
           ]
+        else if (config.flavor == "vscode-workspace") then
+          [ "servers" ]
         else
           [ "mcpServers" ];
     in

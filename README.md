@@ -204,6 +204,7 @@ Check the `examples` directory for complete configuration examples:
 - [`claude-desktop.nix`](./examples/claude-desktop.nix): Basic configuration for Claude Desktop
 - [`vscode.nix`](./examples/vscode.nix): VS Code integration setup
 - [`librechat.nix`](./examples/librechat.nix): Configuration for LibreChat integration
+- [`vscode-workspace`](./examples/vscode-workspace/flake.nix): VS Code workspace configuration example
 
 ### Real World Examples
 
