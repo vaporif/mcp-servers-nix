@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "mcp-grafana";
-  version = "0.2.5";
+  version = "0.2.6";
 
   src = fetchFromGitHub {
     owner = "grafana";
     repo = "mcp-grafana";
     tag = "v${version}";
-    hash = "sha256-HB4xVh2yTuKVRyFujX0JVx+ni4jvImNf1CXPDxjRrN0=";
+    hash = "sha256-6GtYJYpf4tIybYDgoywFCaMXggmtPLbWk3WLFA0OUd8=";
   };
 
   vendorHash = "sha256-GUSMJizNt0C8tx3koVFmMnJPhThYM9Fy1iGI86ZkYe0=";
@@ -21,6 +21,8 @@ buildGoModule rec {
     "-s"
     "-w"
   ];
+
+  __darwinAllowLocalNetworking = true;
 
   meta = {
     description = "MCP server for Grafana";
