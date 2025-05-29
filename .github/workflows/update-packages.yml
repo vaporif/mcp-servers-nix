@@ -36,7 +36,7 @@ jobs:
       - uses: nixbuild/nix-quick-install-action@5bb6a3b3abe66fd09bbf250dce8ada94f856a703 # v30
 
       - name: Update package
-        run: nix run nixpkgs#nix-update -- --commit ${{ matrix.package }}
+        run: nix run nixpkgs#nix-update -- --flake --commit ${{ matrix.package }}
 
       - name: Get commit message
         id: commit-msg
