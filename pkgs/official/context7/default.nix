@@ -48,7 +48,7 @@ let
 
   # Step 2: Main build derivation
 in stdenv.mkDerivation rec {
-  pname = "context7-mcp-server";
+  pname = "mcp-context7";
   inherit version src;
 
   nativeBuildInputs = [ bun makeWrapper ];
