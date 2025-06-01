@@ -4,6 +4,7 @@
   fetchFromGitHub,
   bun,
   makeWrapper,
+  nodejs-slim,
 }:
 
 # TODO: would be great to remove this once nixpkgs
@@ -77,13 +78,11 @@ in stdenv.mkDerivation rec {
     cp -r node_modules $out/lib/context7-mcp/
     cp package.json $out/lib/context7-mcp/
 
-    sed -i '1s|^|#!/usr/bin/env bun\n|' $out/lib/context7-mcp/dist/index.js
     chmod +x $out/lib/context7-mcp/dist/index.js
 
     mkdir -p $out/bin
     makeWrapper $out/lib/context7-mcp/dist/index.js $out/bin/context7-mcp \
-      --prefix PATH : ${lib.makeBinPath [ bun ]} \
-      --set NODE_ENV production
+      --prefix PATH : ${lib.makeBinPath [ nodejs-slim ]} \
 
     runHook postInstall
   '';
