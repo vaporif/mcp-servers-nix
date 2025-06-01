@@ -12,6 +12,7 @@ let
   version = "1.0.12";
 
   src = fetchFromGitHub {
+    # TODO: wait until merge https://github.com/upstash/context7/pull/248
     owner = "vaporif";
     repo = "context7";
     rev = "fcd166d95f3619378df8c35c5619ac6e420535a8";
