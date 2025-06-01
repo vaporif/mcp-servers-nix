@@ -5,6 +5,9 @@
   bun,
   makeWrapper,
 }:
+
+# TODO: would be great to remove this once nixpkgs
+# has native build bun packages derivation
 let
   version = "1.0.12";
 
@@ -12,7 +15,7 @@ let
     owner = "vaporif";
     repo = "context7";
     rev = "fcd166d95f3619378df8c35c5619ac6e420535a8";
-    hash = "sha256-rDDWjhFS6X0WN8UPbP93bGnPo2YPOjndbFiKMI+zHJ0="; # Replace with actual hash
+    hash = "sha256-rDDWjhFS6X0WN8UPbP93bGnPo2YPOjndbFiKMI+zHJ0=";
   };
 
   # Step 1: Fixed-output derivation for dependencies
@@ -45,7 +48,7 @@ let
 
   # Step 2: Main build derivation
 in stdenv.mkDerivation rec {
-  pname = "context7-mcp";
+  pname = "context7-mcp-server";
   inherit version src;
 
   nativeBuildInputs = [ bun makeWrapper ];
@@ -92,7 +95,7 @@ in stdenv.mkDerivation rec {
     description = "Context7 MCP Server - Up-to-date code documentation for LLMs and AI code editors";
     homepage = "https://context7.com";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ ];
+    maintainers =  [ "vaporif" ];
     mainProgram = "context7-mcp";
   };
 }
