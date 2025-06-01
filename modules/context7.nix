@@ -1,4 +1,7 @@
 { mkServerModule, ... }:
 {
-  imports = [ (mkServerModule { name = "context7"; }) ];
+  imports = [ (mkServerModule {
+    name = "context7";
+    packageName = "mcp-context7";
+  }) ];
 }
