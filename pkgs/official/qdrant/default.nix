@@ -22,7 +22,11 @@ python3Packages.buildPythonApplication rec {
     mcp
     pydantic
     tzdata
-    fastembed
+    (fastembed.overridePythonAttrs (old: {
+      meta = old.meta // {
+        platforms = old.meta.platforms ++ [ "aarch64-linux" ];
+      };
+    }))
     qdrant-client
   ] ++ [ fastmcp ];
 
