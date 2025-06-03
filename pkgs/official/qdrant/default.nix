@@ -22,11 +22,9 @@ python3Packages.buildPythonApplication rec {
     mcp
     pydantic
     tzdata
-    (fastembed.overridePythonAttrs (old: {
-      meta = old.meta // {
-        platforms = old.meta.platforms ++ [ "aarch64-linux" ];
-      };
-    }))
+    # NOTE: fastembed is disabled on aarch64-linux due to ONNX Runtime compatibility issues
+    # Override at your own risk - it may build but fail at runtime
+    fastembed
     qdrant-client
   ] ++ [ fastmcp ];
 
@@ -38,7 +36,9 @@ python3Packages.buildPythonApplication rec {
     description = "Model Context Protocol Server for Qdrant";
     homepage = "https://github.com/qdrant/mcp-server-qdrant";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ natsukium ];
+    maintainers = with lib.maintainers; [ vaporif ];
     mainProgram = "mcp-server-qdrant";
+    # Inherit platform restrictions from fastembed due to ONNX Runtime issues
+    inherit (python3Packages.fastembed.meta) platforms badPlatforms;
   };
 }
