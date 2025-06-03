@@ -2,10 +2,8 @@
   lib,
   fetchFromGitHub,
   python3Packages,
+  fastmcp,
 }:
-let
-  pythonDeps = (import ../../../lib).mkPythonDeps { inherit lib python3Packages; fetchPypi = python3Packages.fetchPypi; };
-in
 python3Packages.buildPythonApplication rec {
   pname = "mcp-server-qdrant";
   version = "0.7.1";
@@ -26,7 +24,7 @@ python3Packages.buildPythonApplication rec {
     tzdata
     fastembed
     qdrant-client
-  ] ++ [ pythonDeps.fastmcp ];
+  ] ++ [ fastmcp ];
 
   doCheck = false;
 

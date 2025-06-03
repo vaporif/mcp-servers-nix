@@ -1,5 +1,8 @@
 { pkgs }:
 {
+  # python packages
+  fastmcp = pkgs.callPackage ../python-packages/fastmcp { };
+
   # reference servers
   mcp-server-aws-kb-retrieval = pkgs.callPackage (import ./reference/generic-ts.nix {
     service = "aws-kb-retrieval";
@@ -56,7 +59,9 @@
 
   # official servers
   mcp-context7 = pkgs.callPackage ./official/context7 { };
-  mcp-qdrant = pkgs.callPackage ./official/qdrant { };
+  mcp-qdrant = pkgs.callPackage ./official/qdrant { 
+    fastmcp = pkgs.callPackage ../python-packages/fastmcp { };
+  };
   mcp-grafana = pkgs.callPackage ./official/grafana { };
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
