@@ -60,4 +60,5 @@
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
   github-mcp-server = pkgs.callPackage ./official/github { };
+  mcp-server-qdrant = pkgs.callPackage ./official/qdrant { };
 }

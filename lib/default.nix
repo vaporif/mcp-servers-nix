@@ -172,4 +172,7 @@ in
 {
   inherit evalModule;
   mkConfig = pkgs: config: (evalModule pkgs config).config.configFile;
+  mkPythonDeps = pkgs: import ./python-deps.nix {
+    inherit (pkgs) lib python3Packages fetchPypi;
+  };
 }
