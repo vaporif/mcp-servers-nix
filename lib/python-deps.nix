@@ -7,7 +7,7 @@
 
     src = fetchPypi {
       inherit pname version;
-      hash = "sha256-fnDz95Ttof9Br9Mz0YTtU96Afm7UsBsup//9C9tCiwo=";
+      hash = "sha256-Fcp1q5uVw2g62oLXQDyC6PuudLve1Ed2mQ3RkkVKjDg=";
     };
 
     build-system = with python3Packages; [
@@ -27,7 +27,7 @@
       description = "Fast Model Context Protocol server implementation";
       homepage = "https://github.com/jlowin/fastmcp";
       license = licenses.mit;
-      maintainers = with maintainers; [ ];
+      maintainers = with maintainers; [ "vaporif" ];
     };
   };
 }
