@@ -56,6 +56,7 @@
 
   # official servers
   mcp-context7 = pkgs.callPackage ./official/context7 { };
+  mcp-qdrant = pkgs.callPackage ./official/qdrant { };
   mcp-grafana = pkgs.callPackage ./official/grafana { };
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
