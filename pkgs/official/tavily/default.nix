@@ -4,18 +4,18 @@
   buildNpmPackage,
 }:
 
-buildNpmPackage rec {
+buildNpmPackage {
   pname = "tavily-mcp-server";
   version = "1.8.1";
 
   src = fetchFromGitHub {
     owner = "tavily-ai";
-    repo = pname;
+    repo = "tavily-mcp";
     rev = "1fed0f52655601aaca254a8e7497d45c40cd9a74";
-    hash = "sha256-s+N3iaERCk2coEw+I/rsMJhGJ5XYA8FMrDgCoTZmb/A=";
+    hash = "sha256-+GahPtLVNRKmzTebMheiFYCbsERwnBjWHB5uAogjnic=";
   };
 
-  npmDepsHash = "sha256-u8sox/qbb3bdPcGPSNI9124DL3djDmQ8xHOagrl1GGA=";
+  npmDepsHash = "sha256-LMz9YuUZ39MoMPkyajmJ5D38l/fz88qBYsuK5poI10k=";
 
   meta = {
     description = "Official Tavily MCP Server";
