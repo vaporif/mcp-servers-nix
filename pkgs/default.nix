@@ -59,7 +59,8 @@
 
   # official servers
   mcp-context7 = pkgs.callPackage ./official/context7 { };
-  mcp-qdrant = pkgs.callPackage ./official/qdrant { 
+  mcp-tavily = pkgs.callPackage ./official/tavily { };
+  mcp-qdrant = pkgs.callPackage ./official/qdrant {
     fastmcp = pkgs.callPackage ../python-packages/fastmcp { };
   };
   mcp-grafana = pkgs.callPackage ./official/grafana { };
