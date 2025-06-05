@@ -95,7 +95,7 @@ in stdenv.mkDerivation rec {
     description = "Context7 MCP Server - Up-to-date code documentation for LLMs and AI code editors";
     homepage = "https://context7.com";
     license = lib.licenses.mit;
-    maintainers =  [ "vaporif" ];
+    maintainers = with lib.maintainers; [ vaporif ];
     mainProgram = "context7-mcp";
   };
 }
