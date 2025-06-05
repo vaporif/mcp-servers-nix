@@ -59,7 +59,9 @@
 
   # official servers
   mcp-context7 = pkgs.callPackage ./official/context7 { };
-  mcp-tavily = pkgs.callPackage ./official/tavily { };
+  mcp-tavily = pkgs.callPackage (import ./reference/generic-ts.nix {
+    service = "tavily";
+  }) { };
   mcp-qdrant = pkgs.callPackage ./official/qdrant {
     fastmcp = pkgs.callPackage ../python-packages/fastmcp { };
   };
