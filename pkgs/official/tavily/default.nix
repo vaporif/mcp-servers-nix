@@ -5,7 +5,7 @@
 }:
 
 buildNpmPackage rec {
-  pname = "notion-mcp-server";
+  pname = "tavily-mcp-server";
   version = "1.8.1";
 
   src = fetchFromGitHub {
