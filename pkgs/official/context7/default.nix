@@ -16,7 +16,7 @@ let
     owner = "upstash";
     repo = "context7";
     rev = "8a8cfa1c82d20e13e17a2c8e854e48bb31d69e2d";
-    hash = lib.fakeSha256;
+    hash = "";
   };
 
   # Step 1: Fixed-output derivation for dependencies
