@@ -47,6 +47,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/jikime/py-mcp-youtube-toolbox";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ vaporif ];
-    mainProgram = "py-mcp-youtube-toolbox";
+    mainProgram = "mcp-youtube-server";
   };
 }
