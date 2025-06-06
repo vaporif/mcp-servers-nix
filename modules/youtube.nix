@@ -1,4 +1,4 @@
 { mkServerModule, ... }:
 {
-  imports = [ (mkServerModule { name = "youtube"; packageName = "youtube"; }) ];
+  imports = [ (mkServerModule { name = "youtube"; }) ];
 }
