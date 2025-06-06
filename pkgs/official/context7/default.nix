@@ -42,7 +42,7 @@ let
     '';
 
     # This hash represents the dependencies
-    outputHash = "sha256-y9R0MXNH5DO2sxv+eibwrueNZC8jCAVCrMfjJ6FI50E=";
+    outputHash = "sha256-vNgJRV23T9/cfTHI5FRiW5K64VIxB5nehADZ1AeuAj0=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
