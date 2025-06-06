@@ -15,8 +15,8 @@ let
   src = fetchFromGitHub {
     owner = "upstash";
     repo = "context7";
-    rev = "8a8cfa1c82d20e13e17a2c8e854e48bb31d69e2d";
-    hash = lib.fakeSha256;
+    rev = "";
+    hash = "sha256-T15u7aI/ro5vCvnOD4RMT5YK7uAIkAYvwCkJYLqV8Eo=";
   };
 
   # Step 1: Fixed-output derivation for dependencies
