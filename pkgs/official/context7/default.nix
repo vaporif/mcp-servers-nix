@@ -16,7 +16,7 @@ let
     owner = "upstash";
     repo = "context7";
     rev = "8a8cfa1c82d20e13e17a2c8e854e48bb31d69e2d";
-    hash = "sha256-T15u7aI/ro5vCvnOD4RMT5YK7uAIkAYvwCkJYLqV8Eo=";
+    hash = "";
   };
 
   # Step 1: Fixed-output derivation for dependencies
@@ -42,7 +42,7 @@ let
     '';
 
     # This hash represents the dependencies
-    outputHash = "sha256-y9R0MXNH5DO2sxv+eibwrueNZC8jCAVCrMfjJ6FI50E=";
+    outputHash = "";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
