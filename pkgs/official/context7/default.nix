@@ -42,7 +42,7 @@ let
     '';
 
     # This hash represents the dependencies
-    outputHash = lib.fakeSha256;
+    outputHash = "sha256-vNgJRV23T9/cfTHI5FRiW5K64VIxB5nehADZ1AeuAj0=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
