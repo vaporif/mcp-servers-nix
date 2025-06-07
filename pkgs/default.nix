@@ -56,6 +56,7 @@
   }) { };
   mcp-server-sqlite = pkgs.callPackage ./reference/sqlite.nix { };
   mcp-server-time = pkgs.callPackage ./reference/time.nix { };
+  mcp-youtube = pkgs.callPackage ./reference/youtube.nix { };
 
   # official servers
   mcp-context7 = pkgs.callPackage ./official/context7 { };
