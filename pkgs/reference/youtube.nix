@@ -1,52 +1,42 @@
 {
   lib,
   fetchFromGitHub,
-  python3,
-  makeWrapper,
-  stdenv
+  buildNpmPackage,
+  jq,
 }:
-let
-  pythonEnv = python3.withPackages (ps: with ps; [
-    google-api-python-client
-    mcp
-    python-dotenv
-    youtube-transcript-api
-  ]);
-in
-stdenv.mkDerivation {
+buildNpmPackage rec {
   pname = "mcp-youtube";
   version = "0.1.0";
 
   src = fetchFromGitHub {
-    owner = "jikime";
-    repo = "py-mcp-youtube-toolbox";
-    rev = "d49f78dba0090f6ca84217fb30f0b192d7aaac3d";
-    hash = "sha256-gGbjI+wqCczW2gBiQmPpWGDI1rjUIT87fWdkZ70sQ5E=";
+    owner = "icraft2170";
+    repo = "youtube-data-mcp-server";
+    rev = "main";
+    hash = "sha256-/AkXWYU5MfeJWsPnLOoY+TiwXJSApXuKRuK4a2ziJiM=";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+  npmDepsHash = "sha256-QmRyVyt+OvcadnKP/6sJfSXDlkFrGN2t8r4JsA6a+eM=";
 
-  installPhase = ''
-    mkdir -p $out/bin $out/share/py-mcp-youtube-toolbox
+  npmBuildScript = "build";
 
-    # Copy all Python files
-    cp -r *.py $out/share/py-mcp-youtube-toolbox/
-    cp -r pyproject.toml requirements.txt $out/share/py-mcp-youtube-toolbox/
-
-    # Create wrapper script
-    makeWrapper ${pythonEnv}/bin/python $out/bin/mcp-youtube-server \
-      --add-flags "$out/share/py-mcp-youtube-toolbox/server.py" \
-      --prefix PYTHONPATH : "$out/share/py-mcp-youtube-toolbox"
-
+  postPatch = ''
+    # Remove postinstall script that tries to chmod dist/index.js before it exists
+    ${lib.getExe jq} 'del(.scripts.postinstall)' package.json > package.json.tmp
+    mv package.json.tmp package.json
   '';
 
-  doCheck = false;
+  postInstall = ''
+    chmod +x $out/lib/node_modules/youtube-data-mcp-server/dist/index.js
+
+    mkdir -p $out/bin
+    ln -s $out/lib/node_modules/youtube-data-mcp-server/dist/index.js $out/bin/mcp-youtube-server
+  '';
 
   meta = {
-    description = "YouTube Toolbox";
-    homepage = "https://github.com/jikime/py-mcp-youtube-toolbox";
-    license = lib.licenses.asl20;
+    description = "YouTube Data MCP Server";
+    homepage = "https://github.com/icraft2170/youtube-data-mcp-server";
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ vaporif ];
-    mainProgram = "mcp-youtube-server";
+    mainProgram = "youtube-data-mcp-server";
   };
 }
