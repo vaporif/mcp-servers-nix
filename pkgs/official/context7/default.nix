@@ -48,7 +48,7 @@ let
   };
 
   # Step 2: Main build derivation
-in stdenv.mkDerivation rec {
+in stdenv.mkDerivation {
   pname = "mcp-context7";
   inherit version src;
 
