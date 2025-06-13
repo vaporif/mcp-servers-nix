@@ -15,7 +15,7 @@ let
   src = fetchFromGitHub {
     owner = "upstash";
     repo = "context7";
-    rev = "v${version}";
+    tag = "v${version}";
     hash = "sha256-vtwr7q80spmMuGbdc98DX822o8uF9wTbHeA3mEGXai8=";
   };
 
