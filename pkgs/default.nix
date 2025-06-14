@@ -55,6 +55,7 @@
   mcp-server-time = pkgs.callPackage ./reference/time.nix { };
 
   # official servers
+  context7-mcp = pkgs.callPackage ./official/context7 { };
   mcp-grafana = pkgs.callPackage ./official/grafana { };
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
