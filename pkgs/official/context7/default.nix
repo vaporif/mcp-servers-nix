@@ -66,6 +66,9 @@ stdenv.mkDerivation {
     cp -r ${deps}/node_modules .
     cp ${deps}/bun.lock .
 
+    substituteInPlace node_modules/.bin/tsc \
+      --replace-fail "/usr/bin/env node" "${lib.getExe nodejs-slim}"
+
     bun run build
 
     runHook postBuild
