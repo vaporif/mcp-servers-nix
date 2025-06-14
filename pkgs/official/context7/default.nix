@@ -95,6 +95,7 @@ stdenv.mkDerivation {
 
   passthru = {
     inherit deps;
+    updateScript = ./update.sh;
   };
 
   meta = {
