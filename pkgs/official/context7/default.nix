@@ -48,11 +48,15 @@ let
   };
 
   # Step 2: Main build derivation
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   pname = "context7-mcp";
   inherit version src;
 
-  nativeBuildInputs = [ bun makeWrapper ];
+  nativeBuildInputs = [
+    bun
+    makeWrapper
+  ];
 
   buildPhase = ''
     runHook preBuild
@@ -94,7 +98,10 @@ in stdenv.mkDerivation {
     description = "Up-to-date code documentation for LLMs and AI code editors";
     homepage = "https://context7.com";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ natsukium vaporif ];
+    maintainers = with lib.maintainers; [
+      natsukium
+      vaporif
+    ];
     mainProgram = "context7-mcp";
   };
 }
