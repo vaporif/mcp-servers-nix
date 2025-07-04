@@ -10,13 +10,13 @@
 # TODO: would be great to remove this once nixpkgs
 # has native build bun packages derivation
 let
-  version = "1.0.13";
+  version = "1.0.14";
 
   src = fetchFromGitHub {
     owner = "upstash";
     repo = "context7";
     tag = "v${version}";
-    hash = "sha256-vtwr7q80spmMuGbdc98DX822o8uF9wTbHeA3mEGXai8=";
+    hash = "sha256-41CIl3+psA/UPYclq7hnNvuhAaUg9NPuAZETGPbrydo=";
   };
 
   # Step 1: Fixed-output derivation for dependencies
@@ -42,7 +42,7 @@ let
     '';
 
     # This hash represents the dependencies
-    outputHash = "sha256-vNgJRV23T9/cfTHI5FRiW5K64VIxB5nehADZ1AeuAj0=";
+    outputHash = "sha256-M2wEKx1Y9XlemGxG+O39ue64B5JrC5fchelaSl8Rno8=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
