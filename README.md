@@ -243,29 +243,17 @@ The system automatically wraps the package when either `envFile` or `passwordCom
 
 The framework includes modules for the following MCP servers:
 
-- [aws-kb-retrieval](./modules/aws-kb-retrieval.nix)
-- [brave-search](./modules/brave-search.nix)
 - [context7](./modules/context7.nix)
-- [everart](./modules/everart.nix)
 - [everything](./modules/everything.nix)
 - [fetch](./modules/fetch.nix)
 - [filesystem](./modules/filesystem.nix)
-- [gdrive](./modules/gdrive.nix)
 - [git](./modules/git.nix)
 - [github](./modules/github.nix)
-- [gitlab](./modules/gitlab.nix)
-- [google-maps](./modules/google-maps.nix)
 - [grafana](./modules/grafana.nix)
 - [memory](./modules/memory.nix)
 - [notion](./modules/notion.nix)
 - [playwright](./modules/playwright.nix)
-- [postgres](./modules/postgres.nix)
-- [puppeteer](./modules/puppeteer.nix)
-- [redis](./modules/redis.nix)
-- [sentry](./modules/sentry.nix)
 - [sequential-thinking](./modules/sequential-thinking.nix)
-- [slack](./modules/slack.nix)
-- [sqlite](./modules/sqlite.nix)
 - [time](./modules/time.nix)
 
 ## Adding Custom Servers
