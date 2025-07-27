@@ -16,19 +16,30 @@
       lib = import ./lib;
 
       packages = forAllSystems (
-        system: (import ./. { pkgs = import nixpkgs { inherit system; }; }).packages
+        system: (import ./. {
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+        }).packages
       );
 
       overlays.default = import ./overlays;
 
       checks = lib.foldr (x: acc: lib.recursiveUpdate x acc) { } [
-        (forAllSystems (system: import ./tests { pkgs = import nixpkgs { inherit system; }; }))
+        (forAllSystems (system: import ./tests {
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+        }))
         (forAllSystems (
           system:
           import ./examples {
             pkgs = import nixpkgs {
               inherit system;
               config.allowUnfree = true;
+              overlays = [ self.overlays.default ];
             };
           }
         ))

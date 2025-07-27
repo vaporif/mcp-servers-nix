@@ -10,7 +10,7 @@
 # TODO: would be great to remove this once nixpkgs
 # has native build bun packages derivation
 let
-  version = "1.0.12";
+  version = "1.0.14";
 
   src = fetchFromGitHub {
     owner = "upstash";

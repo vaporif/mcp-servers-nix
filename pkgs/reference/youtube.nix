@@ -12,7 +12,7 @@ buildNpmPackage rec {
     owner = "icraft2170";
     repo = "youtube-data-mcp-server";
     rev = "main";
-    hash = "sha256-/AkXWYU5MfeJWsPnLOoY+TiwXJSApXuKRuK4a2ziJiM=";
+    hash = "sha256-opYLud/kugHs4cXJSi9SutSvTwjM6PX/RdGlMFkZ1Jo=";
   };
 
   npmDepsHash = "sha256-QmRyVyt+OvcadnKP/6sJfSXDlkFrGN2t8r4JsA6a+eM=";
