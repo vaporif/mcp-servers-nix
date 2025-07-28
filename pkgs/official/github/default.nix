@@ -6,7 +6,7 @@
 
 buildGoModule rec {
   pname = "github-mcp-server";
-  version = "0.9.0";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "github";
