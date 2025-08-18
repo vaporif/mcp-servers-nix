@@ -44,4 +44,5 @@ in
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
   github-mcp-server = pkgs.callPackage ./official/github { };
+  serena = pkgs.callPackage ./official/serena { };
 }

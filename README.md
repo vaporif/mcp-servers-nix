@@ -254,6 +254,7 @@ The framework includes modules for the following MCP servers:
 - [notion](./modules/notion.nix)
 - [playwright](./modules/playwright.nix)
 - [sequential-thinking](./modules/sequential-thinking.nix)
+- [serena](./modules/serena.nix)
 - [time](./modules/time.nix)
 
 ## Adding Custom Servers
