@@ -15,6 +15,7 @@ jobs:
           - github-mcp-server
           - mcp-grafana
           - playwright-mcp
+          - serena
     steps:
       - name: Generate GitHub App token
         id: app-token
