@@ -42,7 +42,7 @@ jobs:
       - name: Update package
         id: update-package
         run: |
-          OUTPUT=$(nix run github:Mic92/nix-update \
+          OUTPUT=$(nix run nixpkgs#nix-update \
             -- --flake ${{ matrix.package }} --print-commit-message)
 
           # Extract title (first line containing package name)
