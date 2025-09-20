@@ -256,6 +256,7 @@ The framework includes modules for the following MCP servers:
 - [playwright](./modules/playwright.nix)
 - [sequential-thinking](./modules/sequential-thinking.nix)
 - [serena](./modules/serena.nix)
+- [terraform](./modules/terraform.nix)
 - [time](./modules/time.nix)
 
 ## Adding Custom Servers
