@@ -45,4 +45,7 @@ in
   playwright-mcp = pkgs.callPackage ./official/playwright { };
   github-mcp-server = pkgs.callPackage ./official/github { };
   serena = pkgs.callPackage ./official/serena { };
+
+  # community servers
+  clickup-mcp-server = pkgs.callPackage ./community/clickup { };
 }
