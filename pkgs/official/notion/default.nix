@@ -6,16 +6,16 @@
 
 buildNpmPackage {
   pname = "notion-mcp-server";
-  version = "1.8.1";
+  version = "1.9.0";
 
   src = fetchFromGitHub {
     owner = "makenotion";
     repo = "notion-mcp-server";
-    rev = "e973d503f7240d2aa6e5422f5589b34839382716";
-    hash = "sha256-s+N3iaERCk2coEw+I/rsMJhGJ5XYA8FMrDgCoTZmb/A=";
+    rev = "ffc1b18807df0cd72717f6ba55e7866af2d91ccd";
+    hash = "sha256-e1OHix3fJ2LKgdOML6LMQOb6573VMr0g/1AA/3Izu74=";
   };
 
-  npmDepsHash = "sha256-u8sox/qbb3bdPcGPSNI9124DL3djDmQ8xHOagrl1GGA=";
+  npmDepsHash = "sha256-d+C5twhyH0ZQFI0/n7R3jPU864yFgD9Cni2Qu3dahjc=";
 
   meta = {
     description = "Official Notion MCP Server";
