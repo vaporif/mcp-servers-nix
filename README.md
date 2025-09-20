@@ -204,6 +204,7 @@ Check the `examples` directory for complete configuration examples:
 - [`claude-desktop.nix`](./examples/claude-desktop.nix): Basic configuration for Claude Desktop
 - [`vscode.nix`](./examples/vscode.nix): VS Code integration setup
 - [`librechat.nix`](./examples/librechat.nix): Configuration for LibreChat integration
+- [`codex.nix`](./examples/codex.nix): Codex CLI integration with MCP servers
 - [`vscode-workspace`](./examples/vscode-workspace/flake.nix): VS Code workspace configuration example
 
 ### Real World Examples
@@ -216,8 +217,8 @@ Each module provides specific configuration options, but there are some common o
 
 ### Global Options
 
-- `format`: Configuration file format (`json` or `yaml`, default: `json`)
-- `flavor`: Configuration file type (`claude` or `vscode`, default: `claude`)
+- `format`: Configuration file format (`json`, `yaml`, or `toml-inline`, default: `json`)
+- `flavor`: Configuration file type (`claude`, `vscode`, or `codex`, default: `claude`)
 - `fileName`: Configuration file name (default: `claude_desktop_config.json`)
 - `settings`: Custom settings that will be merged with the generated configuration
 

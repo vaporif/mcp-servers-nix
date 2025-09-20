@@ -153,7 +153,16 @@ let
       modules = [
         {
           _module.args = {
-            pkgs = nixpkgs;
+            pkgs = nixpkgs.extend (
+              final: prev: {
+                formats =
+                  prev.formats
+                  // (import ../lib/formats.nix {
+                    pkgs = final;
+                    lib = final.lib;
+                  });
+              }
+            );
           };
         }
         {

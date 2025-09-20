@@ -10,6 +10,8 @@
       type = lib.types.enum [
         "json"
         "yaml"
+        "toml"
+        "toml-inline"
       ];
       default = "json";
       description = ''
@@ -19,6 +21,7 @@
     flavor = lib.mkOption {
       type = lib.types.enum [
         "claude"
+        "codex"
         "vscode"
         "vscode-workspace"
         "zed"
@@ -27,6 +30,7 @@
       description = ''
         Configuration file type.
         - "claude": Standard Claude Desktop configuration format using "mcpServers" key
+        - "codex": Codex CLI configuration format using "mcp_servers" key
         - "vscode": VSCode global configuration format using "mcp.servers" keys
         - "vscode-workspace": VSCode workspace configuration format with top-level "servers" key,
         - "zed": Zed configuration format with top-level "context_servers" key,
@@ -57,7 +61,9 @@
   config =
     let
       keys =
-        if (config.flavor == "vscode") then
+        if (config.flavor == "codex") then
+          [ "mcp_servers" ]
+        else if (config.flavor == "vscode") then
           [
             "mcp"
             "servers"
