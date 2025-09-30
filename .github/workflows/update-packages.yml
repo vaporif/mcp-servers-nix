@@ -42,8 +42,14 @@ jobs:
       - name: Update package
         id: update-package
         run: |
+          if [[ "${{ matrix.package }}" == "serena" ]]; then
+            VERSION_FLAG="--version=branch"
+          else
+            VERSION_FLAG=""
+          fi
+
           OUTPUT=$(nix run nixpkgs#nix-update \
-            -- --flake ${{ matrix.package }} --print-commit-message)
+            -- --flake ${{ matrix.package }} $VERSION_FLAG --print-commit-message)
 
           # Extract title (first line containing package name)
           COMMIT_TITLE=$(echo "$OUTPUT" | grep -E "^${{ matrix.package }}:" | head -1)
