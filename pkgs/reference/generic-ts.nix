@@ -13,7 +13,7 @@ buildNpmPackage {
   pname = "mcp-server-${service}";
   inherit (import ./source.nix { inherit fetchFromGitHub; }) version src;
 
-  npmDepsHash = "sha256-qIsj4XCMqFxqsfjZzs/eDM57U+BI3yJ6h6sdMHXgLvU=";
+  npmDepsHash = "sha256-iRPILytyloL6qRMvy2fsDdqkewyqEfcuVspwUN5Lrqw=";
 
   npmWorkspace = "src/${workspace}";
 
