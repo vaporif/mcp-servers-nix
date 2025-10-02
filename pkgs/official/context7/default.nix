@@ -10,13 +10,13 @@
 # TODO: would be great to remove this once nixpkgs
 # has native build bun packages derivation
 let
-  version = "1.0.14";
+  version = "1.0.20";
 
   src = fetchFromGitHub {
     owner = "upstash";
     repo = "context7";
     tag = "v${version}";
-    hash = "sha256-41CIl3+psA/UPYclq7hnNvuhAaUg9NPuAZETGPbrydo=";
+    hash = "sha256-RYjBGmAd87i0TIv/mfa9GDGWwYQyvAe2NrBD/8+QBlk=";
   };
 
   # Step 1: Fixed-output derivation for dependencies
@@ -42,7 +42,7 @@ let
     '';
 
     # This hash represents the dependencies
-    outputHash = "sha256-M2wEKx1Y9XlemGxG+O39ue64B5JrC5fchelaSl8Rno8=";
+    outputHash = "sha256-Y4BFtnnN2gUM42G7QOQowATo6bV+CXtqfrzLjvNHofs=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
@@ -104,7 +104,11 @@ stdenv.mkDerivation {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [
       natsukium
-      vaporif
+      rec {
+        github = "vaporif";
+        githubId = 3934971;
+        name = github;
+      }
     ];
     mainProgram = "context7-mcp";
   };
