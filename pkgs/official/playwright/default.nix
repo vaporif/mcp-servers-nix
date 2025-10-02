@@ -2,6 +2,7 @@
   lib,
   fetchFromGitHub,
   buildNpmPackage,
+  versionCheckHook,
 }:
 
 buildNpmPackage rec {
@@ -18,6 +19,10 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-xgOPlCnlRXJZAZRM4xZ7SYSA5lsPglSewXxY19TbD/A=";
 
   dontNpmBuild = true;
+
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "--version";
 
   meta = {
     description = "Playwright MCP server";
