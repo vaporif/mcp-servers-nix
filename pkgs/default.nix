@@ -40,6 +40,7 @@ in
 
   # official servers
   context7-mcp = pkgs.callPackage ./official/context7 { };
+  tavily-mcp = pkgs.callPackage ./official/tavily { };
   mcp-grafana = pkgs.callPackage ./official/grafana { };
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
