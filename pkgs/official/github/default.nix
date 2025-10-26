@@ -12,7 +12,7 @@ buildGoModule rec {
     owner = "github";
     repo = "github-mcp-server";
     tag = "v${version}";
-    hash = "sha256-kNp3JdOehE31cQfmdqd9LUYK2tJCAqQYFflVW5yM4eM=";
+    hash = "sha256-/i/Gk47IZtTGHUJ3ok9Y2LDTRHqlz0N4IrNmyRqSTNk=";
   };
 
   vendorHash = "sha256-esd4Ly8cbN3z9fxC1j4wQqotV2ULqK3PDf1bEovewUY=";
