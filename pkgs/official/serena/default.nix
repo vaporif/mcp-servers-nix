@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  fortls,
   nodejs,
   pyright,
   python3Packages,
@@ -9,14 +10,14 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "serena";
-  version = "0.1.4-unstable-2025-10-26";
+  version = "0.1.4-unstable-2025-10-29";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "4bf2cbe8189e0c2e7a0d871c5b259f678a43e44c";
-    hash = "sha256-I4mvBMqQaOQkf1XdnoCZ81k98P/jrrHrf2SYOPMtTXg=";
+    rev = "b54a2d0cbf48837f886c7795a94f69686ade1494";
+    hash = "sha256-MQgJ+59BQSXsJCMvRzsqg/Pu1lCWJFbUlM2NNN9NEIM=";
   };
 
   build-system = [ python3Packages.hatchling ];
@@ -35,6 +36,7 @@ python3Packages.buildPythonApplication rec {
     anthropic
     docstring-parser
     flask
+    fortls
     jinja2
     joblib
     mcp
