@@ -78,6 +78,12 @@ python3Packages.buildPythonApplication rec {
     # Requires various language runtimes and language servers
     "test_serena_agent.py"
     "test_symbol_editing.py"
+
+    # Tests fail in upstream CI due to LSP server initialization issues
+    "test_create_with_index_flag"
+    "test_index_auto_creates_project_with_files"
+    "test_index_is_equivalent_to_create_with_index"
+    "test_index_with_explicit_language"
   ];
 
   pytestFlags = [ "test/serena" ];
