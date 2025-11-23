@@ -10,14 +10,14 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "serena";
-  version = "0.1.4-unstable-2025-11-13";
+  version = "0.1.4-unstable-2025-11-21";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "2d7527bcde281ea62cb545d9c3c56da428cad25d";
-    hash = "sha256-rjnxU3NmMNt95vxs/WQxDSiH23g72KEiYFZcTCLhIZU=";
+    rev = "3ffbaa090e46662b12e43e4b3a188ecf1994cdd6";
+    hash = "sha256-52XiphV8k2TizZOtD8quOU+Z3hVVXJnuAekZbbxSghs=";
   };
 
   build-system = [ python3Packages.hatchling ];
@@ -78,6 +78,12 @@ python3Packages.buildPythonApplication rec {
     # Requires various language runtimes and language servers
     "test_serena_agent.py"
     "test_symbol_editing.py"
+
+    # Tests fail in upstream CI due to LSP server initialization issues
+    "test_create_with_index_flag"
+    "test_index_auto_creates_project_with_files"
+    "test_index_is_equivalent_to_create_with_index"
+    "test_index_with_explicit_language"
   ];
 
   pytestFlags = [ "test/serena" ];
