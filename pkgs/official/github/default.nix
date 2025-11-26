@@ -6,16 +6,16 @@
 
 buildGoModule rec {
   pname = "github-mcp-server";
-  version = "0.23.0-gosdk";
+  version = "0.23.0";
 
   src = fetchFromGitHub {
     owner = "github";
     repo = "github-mcp-server";
     tag = "v${version}";
-    hash = "sha256-EoOjEqQzEvplH+P3AsrD22QKqnXOuQAQVZwTWFgX73M=";
+    hash = "sha256-msOgs6Ag0y5HHPXVNku7i6LMXnz78lg9KJpjDjBKK8A=";
   };
 
-  vendorHash = "sha256-90hWzVIjDzP7DBVSIYIwJtG5I89saQTQCU50n4HVylY=";
+  vendorHash = "sha256-P36L5JvBCqraHiOo2mgS00Ocs9RaZVA/bvkDjPppbow=";
 
   ldflags = [
     "-s"
