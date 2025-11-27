@@ -19,15 +19,14 @@ let
   };
 in
 {
-  # Disabled because codex 0.22.0 cannot yet list MCP servers from command line
-  # test-codex =
-  #   pkgs.runCommand "test-codex"
-  #     {
-  #       nativeBuildInputs = with pkgs; [
-  #         codex
-  #       ];
-  #     }
-  #     ''
-  #       codex -c "$(cat ${testConfig})" mcp list | grep -e filesystem > $out
-  #     '';
+  test-codex =
+    pkgs.runCommand "test-codex"
+      {
+        nativeBuildInputs = with pkgs; [
+          codex
+        ];
+      }
+      ''
+        codex -c "$(cat ${testConfig})" mcp list | grep -e filesystem > $out
+      '';
 }
