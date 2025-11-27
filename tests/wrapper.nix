@@ -25,7 +25,7 @@ in
         };
       };
     in
-    pkgs.runCommandNoCC "test-wrapper-password-command-attrs"
+    pkgs.runCommand "test-wrapper-password-command-attrs"
       { nativeBuildInputs = with pkgs; [ gnugrep ]; }
       ''
         touch $out
@@ -49,8 +49,7 @@ in
         };
       };
     in
-    pkgs.runCommandNoCC "test-wrapper-password-command-str"
-      { nativeBuildInputs = with pkgs; [ gnugrep ]; }
+    pkgs.runCommand "test-wrapper-password-command-str" { nativeBuildInputs = with pkgs; [ gnugrep ]; }
       ''
         touch $out
         # Verify that the environment variable is correctly exported when the command is run
@@ -73,7 +72,7 @@ in
         };
       };
     in
-    pkgs.runCommandNoCC "test-wrapper-env-file" { nativeBuildInputs = with pkgs; [ gnugrep ]; } ''
+    pkgs.runCommand "test-wrapper-env-file" { nativeBuildInputs = with pkgs; [ gnugrep ]; } ''
       touch $out
       # Verify that the environment variable is correctly exported when the command is run
       ${evaluated-module.config.settings.servers.github.command} | grep -q TEST=dummy-token
