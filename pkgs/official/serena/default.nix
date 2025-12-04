@@ -10,14 +10,14 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "serena";
-  version = "0.1.4-unstable-2025-11-29";
+  version = "0.1.4-unstable-2025-12-03";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "855818da6357ab37fe1d413f5451f1b7027a99e6";
-    hash = "sha256-saZofcAjQcwCm2kMQcaFHKoOl+tOl66xqqA6fcek55Y=";
+    rev = "b1cee0a9f7eb29cb18c8a43223b2f7dd26dca286";
+    hash = "sha256-3sn92PMZy0v7wKx3p+9jl/HV6BMxCO95ETcspyJtW/c=";
   };
 
   build-system = [ python3Packages.hatchling ];
