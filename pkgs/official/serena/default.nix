@@ -16,8 +16,8 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "b4654d9b159fa51a5868f45a9bdf9b61d5662fd3";
-    hash = "sha256-K+2pWnw4lOFX88gyrq0SyxpoZFbprAaHrqoDp/LklBg=";
+    rev = "33036f0010d5f55de30d6477d8557f36e67ffc2d";
+    hash = "sha256-wf/0xSkiCnQN+KWiw2LHsiUIUFBQsW+WK+/T4DszD8M=";
   };
 
   build-system = [ python3Packages.hatchling ];
