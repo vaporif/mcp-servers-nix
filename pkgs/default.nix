@@ -49,4 +49,5 @@ in
 
   # community servers
   clickup-mcp-server = pkgs.callPackage ./community/clickup { };
+  foundry-mcp-server = pkgs.callPackage ./community/foundry { };
 }
