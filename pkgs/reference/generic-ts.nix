@@ -10,7 +10,7 @@
   writeScriptBin,
   makeBinaryWrapper,
   nodejs,
-}
+}:
 buildNpmPackage {
   pname = "mcp-server-${service}";
   inherit (import ./source.nix { inherit fetchFromGitHub; }) version src;
