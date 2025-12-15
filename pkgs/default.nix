@@ -49,4 +49,5 @@ in
 
   # community servers
   clickup-mcp-server = pkgs.callPackage ./community/clickup { };
+  whatsapp-mcp-server = pkgs.callPackage ./community/whatsapp-mcp { };
 }
