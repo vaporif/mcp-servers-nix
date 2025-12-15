@@ -1,13 +1,12 @@
 {
   lib,
   fetchFromGitHub,
+  buildGoModule,
   python3Packages,
 }:
 
-python3Packages.buildPythonApplication rec {
-  pname = "whatsapp-mcp-server";
+let
   version = "0.0.1-unstable-2025-07-13";
-  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "lharries";
@@ -15,6 +14,30 @@ python3Packages.buildPythonApplication rec {
     rev = "7d6a06dcdce1f01dfb24f60e1030d5efba9f3b88";
     hash = "sha256-z05PFRmODaIEfcFwNt7UO4crkgHGeI3fN95AXlYNeeY=";
   };
+
+  # Go bridge that connects to WhatsApp - required for the MCP server to function
+  whatsapp-bridge = buildGoModule {
+    pname = "whatsapp-bridge";
+    inherit version src;
+
+    sourceRoot = "${src.name}/whatsapp-bridge";
+
+    vendorHash = "sha256-8yTDqljzX2N69Q+GHA3BI8FXpR0nhR3N6ke1UFYPp6g=";
+
+    # CGO required for sqlite3
+    env.CGO_ENABLED = "1";
+
+    meta = {
+      description = "WhatsApp bridge for whatsapp-mcp-server";
+      homepage = "https://github.com/lharries/whatsapp-mcp";
+      license = lib.licenses.mit;
+    };
+  };
+in
+python3Packages.buildPythonApplication {
+  pname = "whatsapp-mcp-server";
+  inherit version src;
+  pyproject = true;
 
   sourceRoot = "${src.name}/whatsapp-mcp-server";
 
@@ -55,10 +78,20 @@ python3Packages.buildPythonApplication rec {
     requests
   ];
 
+  # Include whatsapp-bridge in PATH
+  makeWrapperArgs = [
+    "--prefix"
+    "PATH"
+    ":"
+    (lib.makeBinPath [ whatsapp-bridge ])
+  ];
+
   pythonImportsCheck = [ "main" ];
 
   # No tests in the repository
   doCheck = false;
+
+  passthru = { inherit whatsapp-bridge; };
 
   meta = {
     description = "MCP server for WhatsApp messaging";
