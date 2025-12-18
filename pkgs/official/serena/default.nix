@@ -10,14 +10,14 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "serena";
-  version = "0.1.4-unstable-2025-12-17";
+  version = "0.1.4-unstable-2025-12-18";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "9c5013f682d4844d8ebdfc5117ab5c9a37907e4b";
-    hash = "sha256-IQNcz5G6COaJQsZsSgQRCGtH5XJFB5UQUFlh9mcbMvQ=";
+    rev = "6cd4c21e284190eea69fea9dbfed7b39c7577284";
+    hash = "sha256-qfBh1gspSgPLnaHKHc/y7hlWo9TBFbGqbmn0/KgRNnw=";
   };
 
   # I'm not sure why upstream uses blib2to3, such an ancient and unmaintained package
