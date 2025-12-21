@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  servers,
   mkServerModule,
   ...
 }:
@@ -18,7 +17,7 @@ in
 
   config.settings.servers = lib.mkIf cfg.enable {
     github = {
-      args = lib.optional (cfg.package == servers.github-mcp-server) "stdio";
+      args = [ "stdio" ];
     };
   };
 }

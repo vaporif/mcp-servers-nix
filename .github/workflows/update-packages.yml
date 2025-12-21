@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - github-mcp-server
           - mcp-grafana
           - playwright-mcp
           - serena

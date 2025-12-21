@@ -45,7 +45,7 @@ in
   mcp-grafana = pkgs.callPackage ./official/grafana { };
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
-  github-mcp-server = pkgs.callPackage ./official/github { };
+  github-mcp-server = warnRemoved "github-mcp-server has been removed since it is now available in the nixpkgs 25.11 stable release";
   serena = pkgs.callPackage ./official/serena { };
   slite-mcp-server = pkgs.callPackage ./official/slite { };
 
