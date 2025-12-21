@@ -8,9 +8,6 @@ let
 in
 {
   # reference servers
-  mcp-server-aws-kb-retrieval = warnRemoved "mcp-server-aws-kb-retrieval has been removed as the package was archived upstream";
-  mcp-server-brave-search = warnRemoved "mcp-server-brave-search has been removed as the package was archived upstream";
-  mcp-server-everart = warnRemoved "mcp-server-everart has been removed as the package was archived upstream";
   mcp-server-everything = pkgs.callPackage (import ./reference/generic-ts.nix {
     service = "everything";
   }) { };
@@ -19,19 +16,9 @@ in
     service = "filesystem";
   }) { };
   mcp-server-git = pkgs.callPackage ./reference/git.nix { };
-  mcp-server-github = warnRemoved "mcp-server-github has been removed as the package was archived upstream";
-  mcp-server-gitlab = warnRemoved "mcp-server-gitlab has been removed as the package was archived upstream";
-  mcp-server-gdrive = warnRemoved "mcp-server-gdrive has been removed as the package was archived upstream";
-  mcp-server-google-maps = warnRemoved "mcp-server-google-maps has been removed as the package was archived upstream";
   mcp-server-memory = pkgs.callPackage (import ./reference/generic-ts.nix {
     service = "memory";
   }) { };
-  mcp-server-postgres = warnRemoved "mcp-server-postgres has been removed as the package was archived upstream";
-  mcp-server-puppeteer = warnRemoved "mcp-server-puppeteer has been removed as the package was archived upstream";
-  mcp-server-redis = warnRemoved "mcp-server-redis has been removed as the package was archived upstream";
-  mcp-server-sentry = warnRemoved "mcp-server-sentry has been removed as the package was archived upstream";
-  mcp-server-slack = warnRemoved "mcp-server-slack has been removed as the package was archived upstream";
-  mcp-server-sqlite = warnRemoved "mcp-server-sqlite has been removed as the package was archived upstream";
   mcp-server-sequential-thinking = pkgs.callPackage (import ./reference/generic-ts.nix {
     service = "sequential-thinking";
     workspace = "sequentialthinking";
