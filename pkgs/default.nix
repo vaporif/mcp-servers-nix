@@ -42,7 +42,7 @@ in
   context7-mcp = pkgs.callPackage ./official/context7 { };
   deepl-mcp-server = pkgs.callPackage ./official/deepl { };
   tavily-mcp = pkgs.callPackage ./official/tavily { };
-  mcp-grafana = pkgs.callPackage ./official/grafana { };
+  mcp-grafana = warnRemoved "mcp-grafana has been removed since it is now available in the nixpkgs 25.11 stable release";
   notion-mcp-server = pkgs.callPackage ./official/notion { };
   playwright-mcp = pkgs.callPackage ./official/playwright { };
   github-mcp-server = warnRemoved "github-mcp-server has been removed since it is now available in the nixpkgs 25.11 stable release";
