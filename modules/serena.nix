@@ -35,6 +35,7 @@ in
         lib.types.enum [
           "agent"
           "chatgpt"
+          "claude-code"
           "codex"
           "desktop-app"
           "ide-assistant"
