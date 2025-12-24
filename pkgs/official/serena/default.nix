@@ -16,8 +16,8 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "oraios";
     repo = "serena";
-    rev = "eff50cf682ed73a5af67add2b5142bab47c0a478";
-    hash = "sha256-1WBpkDlqfb2LxHL1KkEpgFqOHaoX5Tpewj3Z07fYJSE=";
+    rev = "f593067c330b87310ad2df18c11ca381bb48d968";
+    hash = "sha256-jo0tmKuvRj9irSwF5wuaGTVIPP1jKB4PrDCh3PwaIUE=";
   };
 
   # I'm not sure why upstream uses blib2to3, such an ancient and unmaintained package
