@@ -1,8 +1,7 @@
 {
   service,
   workspace ? service,
-}:
-{
+}: {
   lib,
   fetchFromGitHub,
   buildNpmPackage,
@@ -13,11 +12,16 @@
 }:
 buildNpmPackage {
   pname = "mcp-server-${service}";
-  inherit (import ./source.nix { inherit fetchFromGitHub; }) version src;
+  inherit (import ./source.nix {inherit fetchFromGitHub;}) version src;
 
   npmDepsHash = "sha256-iRPILytyloL6qRMvy2fsDdqkewyqEfcuVspwUN5Lrqw=";
 
   npmWorkspace = "src/${workspace}";
+
+  # Prevent npm prune from triggering the "prepare" script which re-runs the build.
+  # Without this, prune fails because devDependencies like @types/node are removed
+  # before the prepare script runs tsc.
+  npmPruneFlags = ["--ignore-scripts"];
 
   env.PUPPETEER_SKIP_DOWNLOAD = true;
 
@@ -44,7 +48,7 @@ buildNpmPackage {
     description = "Model Context Protocol Servers for ${service}";
     homepage = "https://github.com/modelcontextprotocol/servers";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ natsukium ];
+    maintainers = with lib.maintainers; [natsukium];
     mainProgram = "mcp-server-${service}";
   };
 }
